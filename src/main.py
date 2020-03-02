@@ -2,13 +2,13 @@
 This module takes care of starting the API Server, Loading the DB and Adding the endpoints
 """
 import os
-from flask import Flask, request, jsonify, url_for
+from flask import Flask, request, jsonify, url_for, render_template
 from flask_migrate import Migrate
 from flask_swagger import swagger
 from flask_cors import CORS
 from utils import APIException, generate_sitemap
 from models import db
-#from models import Person
+from models import Nurses
 
 app = Flask(__name__)
 app.url_map.strict_slashes = False
@@ -36,6 +36,28 @@ def handle_hello():
     }
 
     return jsonify(response_body), 200
+
+@app.route('/home', methods=['GET', 'POST'])
+def home():
+
+    return render_template('home.html')
+
+@app.route('/nurses',methods=['POST'])
+def add_nurse():
+    nurse=request.get_json
+    nurses=nurse(
+    fullname=nurse['fullname'],
+    username=nurse['username'],
+    email=nurse['email'],
+    password=nurse['password'],
+    age=nurse['age'],
+    work_exprience=nurse['work_exprience'],
+    license=nurse['License'],
+    years_working=nurse['years_working']
+
+    )
+    db.session.add(nurses)
+    db.session.commit()
 
 # this only runs if `$ python src/main.py` is executed
 if __name__ == '__main__':
