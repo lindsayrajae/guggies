@@ -24,20 +24,21 @@ def handle_invalid_usage(error):
     return jsonify(error.to_dict()), error.status_code
 
 # generate sitemap with all your endpoints
+# @app.route('/')
+# def sitemap():
+#     return generate_sitemap(app)
+
+# @app.route('/hello', methods=['POST', 'GET'])
+# def handle_hello():
+
+#     response_body = {
+#         "hello": "world"
+#     }
+
+#     return jsonify(response_body), 200
+
 @app.route('/')
-def sitemap():
-    return generate_sitemap(app)
-
-@app.route('/hello', methods=['POST', 'GET'])
-def handle_hello():
-
-    response_body = {
-        "hello": "world"
-    }
-
-    return jsonify(response_body), 200
-
-@app.route('/home', methods=['GET', 'POST'])
+@app.route('/home', methods=['GET'])
 def home():
 
     return render_template('home.html')
