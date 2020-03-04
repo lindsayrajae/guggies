@@ -49,6 +49,11 @@ def home():
 
     return render_template('homepage.html')
 
+@app.route('/userlogin')
+def userlogin():
+
+    return render_template('user_login.html')
+
 
 
 @app.route('/nurses',methods=['POST'])
