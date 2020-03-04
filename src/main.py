@@ -47,7 +47,7 @@ def handle_invalid_usage(error):
 @app.route('/home', methods=['GET'])
 def home():
 
-    return render_template('home.html')
+    return render_template('homepage.html')
 
 
 
