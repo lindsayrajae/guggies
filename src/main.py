@@ -47,8 +47,36 @@ def handle_invalid_usage(error):
 @app.route('/index', methods=['GET'])
 def home():
 
-    return render_template('index.html')
+<<<<<<< HEAD
+    return render_template('layouts/homepage.html', title="zion")
 
+@app.route('/userlogin')
+def userlogin():
+
+    return render_template('layouts/loginlayout')
+
+@app.route('/nurselogin')
+def nurselogin():
+
+    return render_template('layouts/nurseloginlayout')
+
+@app.route('/userprofile')
+def userprofile():
+
+    return render_template('layouts/user_profile.html')
+=======
+    return render_template('index.html')
+>>>>>>> 56c6e3e4a7d5777ad75852ffd89dcf672731ae35
+
+@app.route('/about')
+def about():
+
+    return render_template('layouts/about.html')
+
+@app.route('/contact')
+def contact():
+
+    return render_template('layouts/contact.html')
 
 
 @app.route('/nurses',methods=['POST'])
