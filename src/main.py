@@ -13,7 +13,7 @@ from flask_swagger import swagger
 from flask_cors import CORS
 
 from utils import APIException, generate_sitemap
-from models import db, Nurses,Userpatient,Userpatientprofile,Payment
+from models import db, Nurses,Userpatient
 
 app = Flask(__name__)
 app.url_map.strict_slashes = False
@@ -44,10 +44,9 @@ def handle_invalid_usage(error):
 #     return jsonify(response_body), 200
 
 @app.route('/')
-@app.route('/index', methods=['GET'])
+@app.route('/home', methods=['GET'])
 def home():
 
-<<<<<<< HEAD
     return render_template('layouts/homepage.html', title="zion")
 
 @app.route('/userlogin')
@@ -64,19 +63,19 @@ def nurselogin():
 def userprofile():
 
     return render_template('layouts/user_profile.html')
-=======
+
     return render_template('index.html')
->>>>>>> 56c6e3e4a7d5777ad75852ffd89dcf672731ae35
+
 
 @app.route('/about')
 def about():
 
     return render_template('layouts/about.html')
 
-@app.route('/contact')
-def contact():
+# @app.route('/contact')
+# def about():
 
-    return render_template('layouts/contact.html')
+#     return render_template('layouts/contact.html')
 
 
 @app.route('/nurses',methods=['POST'])
@@ -146,43 +145,7 @@ def login():
     if user is None:
         return "sorry account not found please check spelling and try again or   create an account to become a member "
     return "you have logged in succesfully"
-
-
-
-
-
-@app.route('/Userpatientprofile',methods=['POST'])
-def user_patient_profile():
-    user_patient_profile=request.get_json()
-    user_patient_profile=Userpatient(
-        fullname=user_patient_profile['fullname'],
-        username=user_patient_profile['username'],
-        home_address=user_patient_profile['home_address'],
-        patient_condition=user_patient_profile[ "patient_condition"],
-        patient_allergies=user_patient_profile["patient_allergies"],
-        patient_name=user_patient_profile["patient_name"],
-        patient_medications=user_patient_profile["patient_medications"],
-        patient_age=user_patient_profile["patient_age"],
-        patient_gender=user_patient_profile["patient_gender"],
-        patient_race=user_patient_profile["patient_race"]
-    )
-    db.session.add(user_patient_profile)
-    db.session.commit()
-    return 'Userproifile  was created successfully'
-
-
-@app.route('/Payment',methods=['POST'])
-def payment():
-    Payment=request.get_json()
-    payment=Payment(
-           card_num= payment ["card_num"],
-            card_cvv = payment["card_cvv"],
-            card_exp= payment ["card_exp"],
-           card_name= payment ["card_name"]
-    )
-    db.session.add(Payment)
-    db.session.commit()
-
+    
 
 
 # this only runs if `$ python src/main.py` is executed
