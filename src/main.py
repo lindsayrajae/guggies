@@ -13,7 +13,7 @@ from flask_swagger import swagger
 from flask_cors import CORS
 
 from utils import APIException, generate_sitemap
-from models import db, Nurses,Userpatient
+from models import db, Nurses,Userpatient,Userpatientprofile,Payment
 
 app = Flask(__name__)
 app.url_map.strict_slashes = False
@@ -44,25 +44,10 @@ def handle_invalid_usage(error):
 #     return jsonify(response_body), 200
 
 @app.route('/')
-@app.route('/home', methods=['GET'])
+@app.route('/index', methods=['GET'])
 def home():
 
-    return render_template('homepage.html')
-
-@app.route('/userlogin')
-def userlogin():
-
-    return render_template('user_login.html')
-
-@app.route('/nurselogin')
-def nurselogin():
-
-    return render_template('nurse_login.html')
-
-@app.route('/userprofile')
-def userprofile():
-
-    return render_template('userprofile.html')
+    return render_template('index.html')
 
 
 
@@ -133,7 +118,42 @@ def login():
     if user is None:
         return "sorry account not found please check spelling and try again or   create an account to become a member "
     return "you have logged in succesfully"
-   
+
+
+
+
+
+@app.route('/Userpatientprofile',methods=['POST'])
+def user_patient_profile():
+    user_patient_profile=request.get_json()
+    user_patient_profile=Userpatient(
+        fullname=user_patient_profile['fullname'],
+        username=user_patient_profile['username'],
+        home_address=user_patient_profile['home_address'],
+        patient_condition=user_patient_profile[ "patient_condition"],
+        patient_allergies=user_patient_profile["patient_allergies"],
+        patient_name=user_patient_profile["patient_name"],
+        patient_medications=user_patient_profile["patient_medications"],
+        patient_age=user_patient_profile["patient_age"],
+        patient_gender=user_patient_profile["patient_gender"],
+        patient_race=user_patient_profile["patient_race"]
+    )
+    db.session.add(user_patient_profile)
+    db.session.commit()
+    return 'Userproifile  was created successfully'
+
+
+@app.route('/Payment',methods=['POST'])
+def payment():
+    Payment=request.get_json()
+    payment=Payment(
+           card_num= payment ["card_num"],
+            card_cvv = payment["card_cvv"],
+            card_exp= payment ["card_exp"],
+           card_name= payment ["card_name"]
+    )
+    db.session.add(Payment)
+    db.session.commit()
 
 
 
