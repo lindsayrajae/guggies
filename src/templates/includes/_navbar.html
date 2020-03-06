@@ -3,23 +3,24 @@
 
         <div class="uk-navbar-center-left"><div>
             <ul class="uk-navbar-nav">
-                <li class="uk-active"><a href="#"></a></li>
                 <li>
                     <a href="#">Login</a>
                     <div class="uk-navbar-dropdown">
                         <ul class="uk-nav uk-navbar-dropdown-nav">
-                            <li><a class="" href="/userlogin">User Login</a></li>
-                            <li><a class="" href="/nurselogin">Nurse Login</a></li>
-                            <li><a class="" href="/about">about</a></li>
+                            <li><a class="underline" href="/userlogin">User Login</a></li>
+                            <li><a class="underline" href="/nurselogin">Nurse Login</a></li>
                         </ul>
+                        
                     </div>
                 </li>
+                <li><a href="/contact">Contact Us</a></li>
             </ul>
         </div></div>
         <a class="uk-navbar-item uk-logo" href="/home">GuggieNurse.net</a>
         <div class="uk-navbar-center-right"><div>
             <ul class="uk-navbar-nav">
                 <li><a href="#">Be A Gug Today!</a></li>
+                <li><a href="/about">About Us</a></li>
             </ul>
         </div></div>
 
@@ -33,6 +34,20 @@
 
 li {
     margin-bottom: 10px !important;
+}
+
+/* .underline:hover {
+  border-bottom: 3px solid red;
+  
+} */
+
+.uk-navbar-nav > li > a:hover {
+    color: #999;
+    text-transform: uppercase;
+    transition: .1s ease-in-out;
+        transition-property: all;
+    transition-property: color, #999;
+    border-bottom: 2px solid rgb(22, 22, 22);
 }
 
 </style>
