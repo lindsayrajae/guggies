@@ -64,7 +64,6 @@ def userprofile():
 
     return render_template('layouts/user_profile.html')
 
-    return render_template('index.html')
 
 
 @app.route('/about')
