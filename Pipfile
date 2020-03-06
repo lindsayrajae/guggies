@@ -14,6 +14,7 @@ flask-swagger = "*"
 flask-jwt-simple = "*"
 flask-cors = "*"
 psycopg2 = "*"
+gunicorn = "*"
 
 [requires]
 python_version = "3.6"
