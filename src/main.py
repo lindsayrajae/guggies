@@ -54,6 +54,16 @@ def userlogin():
 
     return render_template('user_login.html')
 
+@app.route('/nurselogin')
+def nurselogin():
+
+    return render_template('nurse_login.html')
+
+@app.route('/userprofile')
+def userprofile():
+
+    return render_template('userprofile.html')
+
 
 
 @app.route('/nurses',methods=['POST'])
