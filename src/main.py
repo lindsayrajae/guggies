@@ -13,7 +13,7 @@ from flask_swagger import swagger
 from flask_cors import CORS
 
 from utils import APIException, generate_sitemap
-from models import db, Nurses,Userpatient
+from models import db, Nurses,Userpatient,Payment,Accept_payment
 
 app = Flask(__name__)
 app.url_map.strict_slashes = False
@@ -146,7 +146,20 @@ def login():
     return "you have logged in succesfully"
     
 
-
+@app.route('/payment',methods=['POST'])
+def payment():
+        payment= request.get_json()
+        payment = Payment(
+        card_num =payment["card_num"],
+        card_cvv = payment["card_cvv"],
+        card_exp= payment ["card_exp"],
+        card_name=payment["card_name"]
+    )
+        db.session.add(payment)
+        db.session.commit()
+        return 'payment was succesful'
+    
+# @app.route('/acp',methods=['POST'])
 # this only runs if `$ python src/main.py` is executed
 if __name__ == '__main__':
     PORT = int(os.environ.get('PORT', 3000))
