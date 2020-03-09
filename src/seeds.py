@@ -94,9 +94,6 @@ def run():
         patient_race="espanic"
     )
     db.session.add(user_patient3)
-<<<<<<< HEAD
     db.session.commit()
 # """thjis is just a test run to see if it up date in git pods
-=======
-    db.session.commit()
->>>>>>> 3ebd37362494584172aa9fd0ca1863c684fa3d58
+
