@@ -96,4 +96,3 @@ def run():
     db.session.add(user_patient3)
     db.session.commit()
 # """thjis is just a test run to see if it up date in git pods
-
