@@ -11,7 +11,6 @@ from flask import Flask, request, jsonify, url_for, render_template
 from flask_migrate import Migrate
 from flask_swagger import swagger
 from flask_cors import CORS
-
 from utils import APIException, generate_sitemap
 from models import db, Nurses,Userpatient,Payment,Accept_payment
 
@@ -23,7 +22,6 @@ MIGRATE = Migrate(app, db)
 db.init_app(app)
 CORS(app)
 # JWTManager(app)
-
 # Handle/serialize errors like a JSON object
 @app.errorhandler(APIException)
 def handle_invalid_usage(error):
@@ -47,24 +45,27 @@ def handle_invalid_usage(error):
 @app.route('/home', methods=['GET'])
 def home():
 
-    return render_template('layouts/homepage.html', title="zion")
+    return render_template('layouts/homepage.html')
 
 @app.route('/userlogin')
 def userlogin():
 
-    return render_template('layouts/loginlayout')
+    return render_template('layouts/loginlayout.html')
+
+@app.route('/register')
+def register():
+
+    return render_template('layouts/register.html')
 
 @app.route('/nurselogin')
 def nurselogin():
 
-    return render_template('layouts/nurseloginlayout')
+    return render_template('layouts/nurseloginlayout.html')
 
 @app.route('/userprofile')
 def userprofile():
 
     return render_template('layouts/user_profile.html')
-
-
 
 @app.route('/about')
 def about():

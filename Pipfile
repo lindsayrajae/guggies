@@ -15,6 +15,7 @@ flask-jwt-simple = "*"
 flask-cors = "*"
 psycopg2 = "*"
 gunicorn = "*"
+flask-wtf = "*"
 
 [requires]
 python_version = "3.6"
