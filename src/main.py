@@ -158,7 +158,20 @@ def payment():
         db.session.add(payment)
         db.session.commit()
         return 'payment was succesful'
-    
+
+
+@app.route('/ACT',methods=['POST'])
+def act():
+    act = request.get_json()
+    act = Accept_payment(
+        name_on_the_account= act ["name_on_the_account"],
+        account_num= act ["account_num"], 
+        routing_num = act ["routing_num"],
+        amount
+    )
+        db.session.add(payment)
+        db.session.commit()
+        return 'payment was succesful'
 # @app.route('/acp',methods=['POST'])
 # this only runs if `$ python src/main.py` is executed
 if __name__ == '__main__':
