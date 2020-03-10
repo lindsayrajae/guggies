@@ -71,6 +71,11 @@ def userprofile():
 def about():
 
     return render_template('layouts/about.html')
+    
+@app.route('/nurses')
+def nurses():
+
+    return render_template('layouts/nursespage.html')
 
 # @app.route('/contact')
 # def about():
