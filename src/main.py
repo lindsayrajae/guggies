@@ -12,7 +12,7 @@ from flask_migrate import Migrate
 from flask_swagger import swagger
 from flask_cors import CORS
 from utils import APIException, generate_sitemap
-from models import db, Nurses,Userpatient,Payment,Accept_payment
+from models import db, Nurses,Userpatient,Payment,Accept_payment,Jobs
 
 app = Flask(__name__)
 app.url_map.strict_slashes = False
@@ -132,7 +132,10 @@ def add_patient_and_user():
     )
     db.session.add(user_patient)
     db.session.commit()
-    return 'User and Patient added successfully'
+    return jsonify({
+        'message': 'Data received',
+        'email': json['email'] 
+    })
 
 @app.route('/login',methods=['POST'])
 def login():
@@ -161,18 +164,35 @@ def payment():
         return 'payment was succesful'
 
 
-@app.route('/ACT',methods=['POST'])
+@app.route('/act',methods=['POST'])
 def act():
     act = request.get_json()
     act = Accept_payment(
         name_on_the_account= act ["name_on_the_account"],
         account_num= act ["account_num"], 
         routing_num = act ["routing_num"],
-        amount
+        amount = act ["amount"]
+)
+    db.session.add(payment)
+    db.session.commit()
+    return 'payment was succesful'
+
+
+
+@app.route('/Jobs',methods=['POST'])
+def job():
+    job = request.get_json
+    job = Jobs(
+        nurse = job ["nurse" ],
+        patient = job ["patient"],
+        address = job ["address"],
+        meds = job ["meds"],
+        time = job ["time"]
     )
-        db.session.add(payment)
-        db.session.commit()
-        return 'payment was succesful'
+
+
+
+
 # @app.route('/acp',methods=['POST'])
 # this only runs if `$ python src/main.py` is executed
 if __name__ == '__main__':

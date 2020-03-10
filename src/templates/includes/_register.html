@@ -25,13 +25,13 @@
 		<div class="input-group-prepend">
 		    <span class="input-group-text"> <i class="fa fa-user"></i> </span>
 		 </div>
-        <input name="" class="form-control" placeholder="Full name" type="text">
+        <input name="" class="form-control" placeholder="Fullname" id="fullname" type="text">
     </div> <!-- form-group// -->
     <div class="form-group input-group">
     	<div class="input-group-prepend">
 		    <span class="input-group-text"> <i class="fa fa-envelope"></i> </span>
 		 </div>
-        <input name="" class="form-control" placeholder="Email address" type="email">
+        <input name="" class="form-control" placeholder="Email address" id="email" type="email">
     </div> <!-- form-group// -->
     <div class="form-group input-group">
     	<div class="input-group-prepend">
@@ -43,7 +43,7 @@
 		    <option value="2">+305</option>
 		    <option value="3">+701</option>
 		</select>
-    	<input name="" class="form-control" placeholder="Phone number" type="text">
+    	<input name="" class="form-control" placeholder="Phone number" id="phone" type="text">
     </div> <!-- form-group// -->
     <div class="form-group input-group">
     	<div class="input-group-prepend">
@@ -60,7 +60,7 @@
     	<div class="input-group-prepend">
 		    <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
 		</div>
-        <input class="form-control" placeholder="Create password" type="password">
+        <input class="form-control" placeholder="Create password" id="cpwd" type="password">
     </div> <!-- form-group// -->
     <div class="form-group input-group">
     	<div class="input-group-prepend">
@@ -69,7 +69,7 @@
         <input class="form-control" placeholder="Repeat password" type="password">
     </div> <!-- form-group// -->                                      
     <div class="form-group">
-        <button type="submit" class="btn btn-primary btn-block"> Create Account  </button>
+        <button type="submit" onclick="registerUser()" class="btn btn-primary btn-block"> Create Account  </button>
     </div> <!-- form-group// -->      
     <p class="text-center">Have an account? <a href="/userlogin">Log In</a> </p>                                                                 
 </form>
@@ -82,7 +82,29 @@
 <br>
 <br>
 <br>
-
+<script>
+    function registerUser(){
+        let email = document.querySelector('#email').value;
+        let fullname = document.querySelector('#fullname').value;
+        let phone = document.querySelector('#phone').value;
+        let cpwd= document.querySelector('#cpwd').value;
+        // alert()
+        fetch('https://3000-a252347d-da8d-48e7-9135-8f1832cb9211.ws-us02.gitpod.io/register/nurses',{
+            method:'POST',
+            headers:{
+                'Content-Type':'application/json'
+            },
+            body:JSON.stringify({
+                'email':email,
+                'fullname':fullname,
+                'phone':phone,
+                'cpwd':cpwd
+            })
+        .then(resp => resp.json())
+        .then(returnMessage => console.log(returnMessage))
+        })
+    }
+  </script>
 <style>
   .divider-text {
     position: relative;
@@ -115,3 +137,5 @@
     color: #fff;
 }
 </style>
+
+ 
