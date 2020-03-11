@@ -200,6 +200,18 @@ def job():
     #     time = job ["time"]
     # )
 
+@app.route('/login',methods=['POST'])
+def login():
+    # return jsonify( create_jwt(identity=['email']))
+    json = request.get_json()
+    user = Userpatient.query.filter_by(
+        email = json['email'],
+        password = utils.sha256(json['password'])
+     ).first()
+    if user is None:
+        return "sorry account not found please check spelling and try again or   create an account to become a member "
+    return "you have logged in succesfully"
+    
 
 
 
