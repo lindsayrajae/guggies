@@ -201,13 +201,6 @@ def job():
     # )
 
 
-@app.route('/add',methods=["POST"])
-def add_user():
-    json = request.get_json()
-    if json["username"] == username and json["password"] == password:
-        return "welcome back"
-    else:
-        return "wrong password"
 
 
 
