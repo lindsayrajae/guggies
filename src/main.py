@@ -71,6 +71,11 @@ def userprofile():
 def about():
 
     return render_template('layouts/about.html')
+    
+@app.route('/nurses')
+def nurses():
+
+    return render_template('layouts/nursespage.html')
 
 # @app.route('/contact')
 # def about():
@@ -94,6 +99,9 @@ def add_nurse():
     db.session.add(nurses)
     db.session.commit()
     return 'Nurse added successfully'
+
+
+    
 @app.route('/nurse_login',methods=['POST'])
 def nurse_login():
     # return jsonify( create_jwt(identity=['email']))
@@ -182,14 +190,24 @@ def act():
 @app.route('/Jobs',methods=['POST'])
 def job():
     job = request.get_json
-    job = Jobs(
-        nurse = job ["nurse" ],
-        patient = job ["patient"],
-        address = job ["address"],
-        meds = job ["meds"],
-        time = job ["time"]
-    )
+    print(type(job))
+    print(job)
+    # job = Jobs(
+    #     nurse = job ["nurse" ],
+    #     patient = job ["patient"],
+    #     address = job ["address"],
+    #     meds = job ["meds"],
+    #     time = job ["time"]
+    # )
 
+
+@app.route('/add',methods=["POST"])
+def add_user():
+    json = request.get_json()
+    if json["username"] == username and json["password"] == password:
+        return "welcome back"
+    else:
+        return "wrong password"
 
 
 
