@@ -122,11 +122,8 @@ def payments():
     return 'Nurse added successfully'
 
 
-<<<<<<< HEAD
-    
-=======
+   
     # chsnge this to login
->>>>>>> aaac5ce19cf2d653721eaa3a5e64d9358afef091
 @app.route('/nurse_login',methods=['POST'])
 def nurse_login():
     # return jsonify( create_jwt(identity=['email']))
@@ -226,7 +223,6 @@ def job():
     # )
 
 
-<<<<<<< HEAD
 @app.route('/add',methods=["POST"])
 def add_user():
     json = request.get_json()
@@ -234,9 +230,7 @@ def add_user():
         return "welcome back"
     else:
         return "wrong password"
-=======
 
->>>>>>> aaac5ce19cf2d653721eaa3a5e64d9358afef091
 
 
 
