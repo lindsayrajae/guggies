@@ -122,7 +122,11 @@ def payments():
     return 'Nurse added successfully'
 
 
+<<<<<<< HEAD
     
+=======
+   
+>>>>>>> 6c1b0b01efac7fe0a08fea04403fbb44235b3a59
     # chsnge this to login
 @app.route('/nurse_login',methods=['POST'])
 def nurse_login():
