@@ -105,7 +105,7 @@ class Userpatientprofile(db.Model):
 class Payment(db.Model):
     __tablename__="payment"
     id = db.Column(db.Integer,primary_key=True)
-    name_on_card = db.Column(db.Integer,primary_key=True)
+    name_on_card =  db.Column(db.String(120), unique=True, nullable=False)
     card_num = db.Column(db.String(120), unique=True, nullable=False)
     card_cvv = db.Column(db.String(120), unique=True, nullable=False)
     card_exp = db.Column(db.String(120), unique=True, nullable=False)
@@ -123,5 +123,27 @@ class Payment(db.Model):
 class Accept_payment(db.Model):
     __tablename__="accept_payment"
     id = db.Column(db.Integer,primary_key=True)
-    name_on_the_account= db.Column(db.Integer,primary_key=True)
-    account_num= db.Column(db.Integer,primary_key=True)
+    name_on_the_account=  db.Column(db.String(120), unique=True, nullable=False)
+    account_num=  db.Column(db.String(120), unique=True, nullable=False)
+    routing_num = db.Column(db.String(150),unique=True,nullable=False)
+    amount = db.Column(db.String(120), unique=True, nullable=False)
+
+
+class Jobs(db.Model):
+    __tablename__ = "jobs"
+    id = db.Column(db.Integer,primary_key=True)
+    nurse = db.Column(db.String(150))
+    patient = db.Column(db.String(150))
+    time = db.Column(db.String(150))
+    address = db.Column(db.String(150))
+    meds = db.Column(db.String(150))
+
+    def serialize():
+        return{
+            "id":self.id,
+            "nurse":self.nurse,
+            "patient":self.patient,
+            "address":self.address,
+            "meds":self.meds,
+            "time":self.time,
+        }
