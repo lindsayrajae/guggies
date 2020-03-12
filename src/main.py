@@ -76,6 +76,20 @@ def about():
 def nurses():
 
     return render_template('layouts/nursespage.html')
+@app.route('/userprofile')
+def user():
+
+    return render_template('layouts/user_profile.html')
+
+@app.route('/nurseprofile')
+def nurse_profile():
+
+    return render_template('layouts/nurse_profile.html')
+
+@app.route('/payment')
+def payments():
+    return render_template('layouts/payment.html')
+
 
 # @app.route('/contact')
 # def about():
@@ -83,22 +97,26 @@ def nurses():
 #     return render_template('layouts/contact.html')
 
 
-@app.route('/nurses',methods=['POST'])
-def add_nurse():
-    nurse=request.get_json()
-    nurses=Nurses(
-        fullname=nurse['fullname'],
-        username=nurse['username'],
-        email=nurse['email'],
-        password=nurse['password'],
-        age=nurse['age'],
-        work_exprience=nurse['work_exprience'],
-        license=nurse['license'],
-        years_working=nurse['years_working']
-    )
+    @app.route('/nurses',methods=['POST'])
+    def add_nurse():
+
+        nurse=request.get_json()
+        nurses=Nurses(
+            fullname=nurse['fullname'],
+            username=nurse['username'],
+            email=nurse['email'],
+            password=nurse['password'],
+            age=nurse['age'],
+            work_exprience=nurse['work_exprience'],
+            license=nurse['license'],
+            years_working=nurse['years_working']
+        )
     db.session.add(nurses)
     db.session.commit()
     return 'Nurse added successfully'
+
+
+    
 @app.route('/nurse_login',methods=['POST'])
 def nurse_login():
     # return jsonify( create_jwt(identity=['email']))
@@ -137,7 +155,10 @@ def add_patient_and_user():
     )
     db.session.add(user_patient)
     db.session.commit()
-    return 'User and Patient added successfully'
+    return jsonify({
+        'message': 'Data received',
+        'email': json['email'] 
+    })
 
 @app.route('/login',methods=['POST'])
 def login():
@@ -164,9 +185,50 @@ def payment():
         db.session.add(payment)
         db.session.commit()
         return 'payment was succesful'
-    
+
+
+@app.route('/act',methods=['POST'])
+def act():
+    act = request.get_json()
+    act = Accept_payment(
+        name_on_the_account= act ["name_on_the_account"],
+        account_num= act ["account_num"], 
+        routing_num = act ["routing_num"],
+        amount = act ["amount"]
+)
+    db.session.add(payment)
+    db.session.commit()
+    return 'payment was succesful'
+
+
+
+@app.route('/Jobs',methods=['POST'])
+def job():
+    job = request.get_json
+    print(type(job))
+    print(job)
+    # job = Jobs(
+    #     nurse = job ["nurse" ],
+    #     patient = job ["patient"],
+    #     address = job ["address"],
+    #     meds = job ["meds"],
+    #     time = job ["time"]
+    # )
+
+
+@app.route('/add',methods=["POST"])
+def add_user():
+    json = request.get_json()
+    if json["username"] == username and json["password"] == password:
+        return "welcome back"
+    else:
+        return "wrong password"
+
+
+
 # @app.route('/acp',methods=['POST'])
 # this only runs if `$ python src/main.py` is executed
 if __name__ == '__main__':
     PORT = int(os.environ.get('PORT', 3000))
     app.run(host='0.0.0.0', port=PORT, debug=False)
+

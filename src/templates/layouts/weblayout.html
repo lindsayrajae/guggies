@@ -17,21 +17,14 @@
 </head>
 <body>
     {% include 'includes/_navbar.html' %}
-    {% include 'includes/_jumbotron.html' %}
-    {% include 'includes/_gugcards.html' %}
-    {% include 'includes/_appheadline.html' %}
-    {% include 'includes/_newsletter.html' %}
-    {% include 'includes/_footer.html' %}
+    
     {% block body%}
         
     {% endblock %}
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
   <script>
-    AOS.init({
-        offset: 400,
-        duration: 600
-    });
+    AOS.init();
   </script>
 </body>
 </html>
