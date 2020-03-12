@@ -52,6 +52,12 @@ def userlogin():
 
     return render_template('layouts/loginlayout.html')
 
+@app.route('/beagug')
+def beagug():
+
+    return render_template('layouts/be_a_gug.html')
+
+
 @app.route('/register')
 def register():
 
@@ -59,7 +65,7 @@ def register():
 
 @app.route('/nurselogin')
 def nurselogin():
-
+ 
     return render_template('layouts/nurseloginlayout.html')
 
 @app.route('/userprofile')
@@ -101,7 +107,7 @@ def add_nurse():
     return 'Nurse added successfully'
 
 
-    
+    # chsnge this to login
 @app.route('/nurse_login',methods=['POST'])
 def nurse_login():
     # return jsonify( create_jwt(identity=['email']))
@@ -110,7 +116,7 @@ def nurse_login():
         email = json['email'],
         password = utils.sha256(json['password'])
      ).first()
-    if user is None:
+    if user is None: 
         return "sorry account not found please check spelling and try again or if your new creat an account and start earning"
     return "you have logged in succesfully ' click to view "
 
@@ -156,7 +162,7 @@ def login():
     if user is None:
         return "sorry account not found please check spelling and try again or   create an account to become a member "
     return "you have logged in succesfully"
-    
+                    # payment amd pay
 
 @app.route('/payment',methods=['POST'])
 def payment():
